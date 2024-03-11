@@ -103,29 +103,29 @@ in
         ];
       programs.firefox.enable = true;
       
-programs.thunderbird = {
-    enable = true;
-    profiles.nixorn = {
-      isDefault = true;
-    };
-  };
-
-	programs.htop.enable = true;
-	programs.vscode.enable = true;
-	programs.tmux.enable = true;
-	programs.vim.enable = true;
-	programs.git = {
-		enable = true;
-		userName = "a-kanev@yandex.ru";
-		userEmail = "a-kanev@yandex.ru";
-              };
-        programs.direnv = {
+      programs.thunderbird = {
           enable = true;
-          nix-direnv.enable = true;
+          profiles.nixorn = {
+            isDefault = true;
+          };
         };
-        programs.bash.enable = true;
 
-        home.stateVersion = "23.11";
+      programs.htop.enable = true;
+      programs.vscode.enable = true;
+      programs.tmux.enable = true;
+      programs.vim.enable = true;
+      programs.git = {
+        enable = true;
+        userName = "a-kanev@yandex.ru";
+        userEmail = "a-kanev@yandex.ru";
+                  };
+            programs.direnv = {
+              enable = true;
+              nix-direnv.enable = true;
+            };
+            programs.bash.enable = true;
+
+            home.stateVersion = "23.11";
   };
   nixpkgs.config.allowUnfree = true;
 
