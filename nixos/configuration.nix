@@ -1,11 +1,12 @@
 
-{ config, pkgs, ... }:
+{ config, pkgs, flake, ... }: let
+  inherit (flake) inputs;
+in 
 
 {
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      <home-manager/nixos>
     ];
 
   # Bootloader.
@@ -83,22 +84,32 @@
     description = "nixorn";
     extraGroups = [ "networkmanager" "wheel" ];
   };
+  home-manager = {
+    useGlobalPkgs = true;
+    useUserPackages = true;
+  };
   home-manager.users.nixorn = { pkgs, ... }: {
      home.packages = [
-	pkgs.gimp
-	pkgs.inkscape
-	pkgs.libreoffice
-	pkgs.telegram-desktop
-	pkgs.ranger
-        pkgs.firefox
-        pkgs.thunderbird
+        pkgs.gimp
+        pkgs.inkscape
+        pkgs.libreoffice
+        pkgs.telegram-desktop
+        pkgs.ranger
         pkgs.keepass
         pkgs.discord
-        pkgs.python311Packages.pip
         pkgs.ncdu
         pkgs.curl
         pkgs.vesktop
         ];
+      programs.firefox.enable = true;
+      
+programs.thunderbird = {
+    enable = true;
+    profiles.nixorn = {
+      isDefault = true;
+    };
+  };
+
 	programs.htop.enable = true;
 	programs.vscode.enable = true;
 	programs.tmux.enable = true;
@@ -115,8 +126,9 @@
         programs.bash.enable = true;
 
         home.stateVersion = "23.11";
-	nixpkgs.config.allowUnfree = true;
   };
+  nixpkgs.config.allowUnfree = true;
+
 
   # Allow unfree packages
 
@@ -154,7 +166,26 @@
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "23.11"; # Did you read the comment?
 
+  nix = {
+    settings = {
+      experimental-features = [
+        "nix-command"
+        "flakes"
+      ];
+      auto-optimise-store = true;
+      keep-outputs = true;
+      keep-derivations = true;
+      trusted-users = [
+        "root"
+        "nixorn"
+        "@wheel"
+      ];
+      builders-use-substitutes = true;
+    };
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
-  services.blueman.enable = true;
+    registry = {
+      nixpkgs.flake = inputs.nixpkgs;
+    };
+    nixPath = ["nixpkgs=flake:nixpkgs"];
+  };
 }
