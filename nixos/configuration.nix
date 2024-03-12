@@ -89,19 +89,19 @@ in
     useUserPackages = true;
   };
   home-manager.users.nixorn = { pkgs, ... }: {
-     home.packages = [
-        pkgs.gimp
-        pkgs.inkscape
-        pkgs.libreoffice
-        pkgs.telegram-desktop
-        pkgs.ranger
-        pkgs.keepass
-        pkgs.discord
-        pkgs.ncdu
-        pkgs.curl
-        pkgs.vesktop
-        pkgs.python311Packages.plantuml-markdown
-        pkgs.python311Packages.mkdocs
+     home.packages = with pkgs; [
+        gimp
+        inkscape
+        libreoffice
+        telegram-desktop
+        ranger
+        keepass
+        discord
+        ncdu
+        curl
+        vesktop
+        python311Packages.plantuml-markdown
+        python311Packages.mkdocs
         ];
       programs.firefox.enable = true;
       
@@ -113,7 +113,18 @@ in
         };
 
       programs.htop.enable = true;
-      programs.vscode.enable = true;
+      programs.vscode = {
+        enable = true;
+        extensions = with pkgs.vscode-extensions; [
+          bbenoist.Nix
+          mkhl.direnv
+          arrterian.nix-env-selector
+          pinage404.nix-extension-pack
+          jnoortheen.nix-ide
+          rust-lang.rust-analyzer
+          haskell.haskell
+        ];
+      };
       programs.tmux.enable = true;
       programs.vim.enable = true;
       programs.git = {
