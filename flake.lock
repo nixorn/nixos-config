@@ -38,6 +38,26 @@
         "type": "github"
       }
     },
+    "nh": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1709714234,
+        "narHash": "sha256-fnuVQqdK48c66EC4mL8t7uLhwsY6JDyn7H5tjRpx9Sg=",
+        "owner": "viperML",
+        "repo": "nh",
+        "rev": "3f148b0c7f2d56be65dc55628f6b2e68ee10e231",
+        "type": "github"
+      },
+      "original": {
+        "owner": "viperML",
+        "repo": "nh",
+        "type": "github"
+      }
+    },
     "nixos-flake": {
       "locked": {
         "lastModified": 1708785992,
@@ -107,6 +127,7 @@
       "inputs": {
         "flake-parts": "flake-parts",
         "home-manager": "home-manager",
+        "nh": "nh",
         "nixos-flake": "nixos-flake",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs"
