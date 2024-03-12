@@ -116,10 +116,9 @@ in
       programs.vscode = {
         enable = true;
         extensions = with pkgs.vscode-extensions; [
-          bbenoist.Nix
+          bbenoist.nix
           mkhl.direnv
           arrterian.nix-env-selector
-          pinage404.nix-extension-pack
           jnoortheen.nix-ide
           rust-lang.rust-analyzer
           haskell.haskell
