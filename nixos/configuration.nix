@@ -51,8 +51,8 @@ in
 
   # Configure keymap in X11
   services.xserver = {
-    layout = "us";
-    xkbVariant = "";
+    xkb.layout = "us";
+    xkb.variant = "";
   };
 
   # Enable CUPS to print documents.
@@ -100,6 +100,8 @@ in
         pkgs.ncdu
         pkgs.curl
         pkgs.vesktop
+        pkgs.python311Packages.plantuml-markdown
+        pkgs.python311Packages.mkdocs
         ];
       programs.firefox.enable = true;
       
