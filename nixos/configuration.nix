@@ -83,13 +83,14 @@ in
         telegram-desktop
         ranger
         keepass
-        discord
         ncdu
         curl
         vesktop
         python311Packages.plantuml-markdown
         python311Packages.mkdocs
         nom
+        comma
+        gnome.gnome-tweaks
         ];
       programs.firefox.enable = true;
       
