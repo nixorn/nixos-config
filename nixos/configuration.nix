@@ -1,11 +1,12 @@
-
-{ config, pkgs, flake, ... }: let
+{ config, pkgs, flake, ... }:
+let
   inherit (flake) inputs;
-in 
+in
 
 {
   imports =
-    [ # Include the results of the hardware scan.
+    [
+      # Include the results of the hardware scan.
       ./hardware-configuration.nix
     ];
 
@@ -76,57 +77,61 @@ in
     useUserPackages = true;
   };
   home-manager.users.nixorn = { pkgs, ... }: {
-     home.packages = with pkgs; [
-        gimp
-        inkscape
-        libreoffice
-        telegram-desktop
-        ranger
-        keepass
-        ncdu
-        curl
-        vesktop
-        python311Packages.plantuml-markdown
-        python311Packages.mkdocs
-        nom
-        comma
-        gnome.gnome-tweaks
-        ];
-      programs.firefox.enable = true;
-      
-      programs.thunderbird = {
-          enable = true;
-          profiles.nixorn = {
-            isDefault = true;
-          };
-        };
+    home.packages = with pkgs; [
+      gimp
+      inkscape
+      libreoffice
+      telegram-desktop
+      transmission_4-gtk
+      nixpkgs-fmt
+      ranger
+      keepass
+      ncdu
+      curl
+      vesktop
+      python311Packages.plantuml-markdown
+      python311Packages.mkdocs
+      nom
+      comma
+      gnome.gnome-tweaks
+    ];
 
-      programs.htop.enable = true;
-      programs.vscode = {
-        enable = true;
-        extensions = with pkgs.vscode-extensions; [
-          bbenoist.nix
-          mkhl.direnv
-          arrterian.nix-env-selector
-          jnoortheen.nix-ide
-          rust-lang.rust-analyzer
-          haskell.haskell
-        ];
+    programs.firefox.enable = true;
+
+    programs.thunderbird = {
+      enable = true;
+      profiles.nixorn = {
+        isDefault = true;
       };
-      programs.tmux.enable = true;
-      programs.vim.enable = true;
-      programs.git = {
-        enable = true;
-        userName = "a-kanev@yandex.ru";
-        userEmail = "a-kanev@yandex.ru";
-                  };
-            programs.direnv = {
-              enable = true;
-              nix-direnv.enable = true;
-            };
-            programs.bash.enable = true;
+    };
 
-            home.stateVersion = "23.11";
+    programs.htop.enable = true;
+    programs.vscode = {
+      enable = true;
+      extensions = with pkgs.vscode-extensions; [
+        bbenoist.nix
+        mkhl.direnv
+        arrterian.nix-env-selector
+        jnoortheen.nix-ide
+        rust-lang.rust-analyzer
+        haskell.haskell
+        jebbs.plantuml
+      ];
+    };
+    programs.tmux.enable = true;
+    programs.vim.enable = true;
+    programs.git = {
+      enable = true;
+      userName = "a-kanev@yandex.ru";
+      userEmail = "a-kanev@yandex.ru";
+    };
+    programs.direnv = {
+      enable = true;
+      nix-direnv.enable = true;
+    };
+    programs.bash.enable = true;
+
+    home.stateVersion = "23.11";
   };
   nixpkgs.config.allowUnfree = true;
 
@@ -153,7 +158,7 @@ in
     };
   };
   environment.sessionVariables.FLAKE = "/home/nixorn/system"; # Чтобы работал nh
-  
+
   nix = {
     settings = {
       experimental-features = [
@@ -174,6 +179,6 @@ in
     registry = {
       nixpkgs.flake = inputs.nixpkgs;
     };
-    nixPath = ["nixpkgs=flake:nixpkgs"];
+    nixPath = [ "nixpkgs=flake:nixpkgs" ];
   };
 }
