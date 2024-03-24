@@ -92,6 +92,12 @@ in
       nom
       comma
       gnome.gnome-tweaks
+      crawlTiles
+      cataclysm-dda
+      rogue
+      obsidian
+      docker
+      docker-client
     ];
 
     programs.firefox.enable = true;
@@ -113,6 +119,7 @@ in
         jnoortheen.nix-ide
         rust-lang.rust-analyzer
         haskell.haskell
+        redhat.vscode-xml
         jebbs.plantuml
       ];
     };
