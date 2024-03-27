@@ -65,12 +65,13 @@ in
     pulse.enable = true;
   };
 
+  virtualisation.docker.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.nixorn = {
     isNormalUser = true;
     description = "nixorn";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "docker"];
   };
   home-manager = {
     useGlobalPkgs = true;
@@ -97,10 +98,13 @@ in
       rogue
       obsidian
       docker
-      docker-client
+      texliveSmall
+      alejandra
+      nil
     ];
 
     programs.firefox.enable = true;
+    programs.pandoc.enable = true;
 
     programs.thunderbird = {
       enable = true;
@@ -169,7 +173,8 @@ in
       experimental-features = [
         "nix-command"
         "flakes"
-      ];
+      ];  
+      accept-flake-config = true;
       auto-optimise-store = true;
       keep-outputs = true;
       keep-derivations = true;
