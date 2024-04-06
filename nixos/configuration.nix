@@ -1,14 +1,15 @@
-{ config, pkgs, flake, ... }:
-let
-  inherit (flake) inputs;
-in
-
 {
-  imports =
-    [
-      # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
+  config,
+  pkgs,
+  flake,
+  ...
+}: let
+  inherit (flake) inputs;
+in {
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+  ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -23,7 +24,7 @@ in
   time.timeZone = "Asia/Bishkek";
 
   # Select internationalisation properties.
-  i18n.defaultLocale = "en_US.UTF-8";
+  i18n.defaultLocale = "ru_RU.UTF-8";
 
   i18n.extraLocaleSettings = {
     LC_ADDRESS = "ru_RU.UTF-8";
@@ -34,6 +35,7 @@ in
     LC_PAPER = "ru_RU.UTF-8";
     LC_TELEPHONE = "ru_RU.UTF-8";
     LC_TIME = "ru_RU.UTF-8";
+    LC_ALL = "ru_RU.UTF-8";
   };
 
   # Enable the X11 windowing system.
@@ -43,7 +45,6 @@ in
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
-
 
   # Configure keymap in X11
   services.xserver = {
@@ -67,17 +68,16 @@ in
 
   virtualisation.docker.enable = true;
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.nixorn = {
     isNormalUser = true;
     description = "nixorn";
-    extraGroups = [ "networkmanager" "wheel" "docker"];
+    extraGroups = ["networkmanager" "wheel" "docker"];
   };
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
   };
-  home-manager.users.nixorn = { pkgs, ... }: {
+  home-manager.users.nixorn = {pkgs, ...}: {
     home.packages = with pkgs; [
       gimp
       inkscape
@@ -95,17 +95,20 @@ in
       gnome.gnome-tweaks
       crawlTiles
       cataclysm-dda
-      rogue
       obsidian
       docker
       texliveSmall
       alejandra
       nil
+      iputils
+      redis
+      graphviz
+      okular
     ];
 
     programs.firefox.enable = true;
     programs.pandoc.enable = true;
-
+    programs.obs-studio.enable = true;
     programs.thunderbird = {
       enable = true;
       profiles.nixorn = {
@@ -125,6 +128,7 @@ in
         haskell.haskell
         redhat.vscode-xml
         jebbs.plantuml
+        ms-toolsai.jupyter
       ];
     };
     programs.tmux.enable = true;
@@ -144,9 +148,7 @@ in
   };
   nixpkgs.config.allowUnfree = true;
 
-
-  environment.systemPackages = with pkgs; [ ];
-
+  environment.systemPackages = [];
 
   system.stateVersion = "23.11";
 
@@ -173,7 +175,7 @@ in
       experimental-features = [
         "nix-command"
         "flakes"
-      ];  
+      ];
       accept-flake-config = true;
       auto-optimise-store = true;
       keep-outputs = true;
@@ -189,6 +191,6 @@ in
     registry = {
       nixpkgs.flake = inputs.nixpkgs;
     };
-    nixPath = [ "nixpkgs=flake:nixpkgs" ];
+    nixPath = ["nixpkgs=flake:nixpkgs"];
   };
 }
