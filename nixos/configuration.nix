@@ -2,6 +2,7 @@
   config,
   pkgs,
   flake,
+  lib,
   ...
 }: let
   inherit (flake) inputs;
@@ -21,7 +22,7 @@ in {
   networking.networkmanager.enable = true;
 
   # Set your time zone.
-  time.timeZone = "Asia/Bishkek";
+  time.timeZone = "Europe/Moscow";
 
   # Select internationalisation properties.
   i18n.defaultLocale = "ru_RU.UTF-8";
@@ -40,10 +41,11 @@ in {
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
-
+  programs.xwayland.enable = true;
   # Enable the GNOME Desktop Environment.
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
+
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
   # Configure keymap in X11
@@ -103,7 +105,11 @@ in {
       iputils
       redis
       graphviz
-      okular
+      vivaldi
+      p7zip
+      mindustry-wayland
+      shattered-pixel-dungeon
+      jq
     ];
 
     programs.firefox.enable = true;
@@ -142,7 +148,12 @@ in {
       enable = true;
       nix-direnv.enable = true;
     };
-    programs.bash.enable = true;
+    programs.bash = {
+      enable = true;
+      sessionVariables = {
+        EDITOR = "vim";
+      };
+    };
 
     home.stateVersion = "23.11";
   };
@@ -161,7 +172,7 @@ in {
   zramSwap.enable = true;
 
   # хелпер для запуска всего
-  nh = {
+  programs.nh = {
     enable = true;
     clean = {
       enable = true;

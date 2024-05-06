@@ -12,7 +12,7 @@
         imports = [ 
           inputs.nixos-hardware.nixosModules.lenovo-legion-15arh05h
           inputs.home-manager.nixosModules.home-manager
-          inputs.nh.nixosModules.default
+          { programs.nh.package = inputs.nh.packages.x86_64-linux.default; }
           ./nixos/configuration.nix
         ];
       };
