@@ -1,10 +1,4 @@
-{
-  config,
-  pkgs,
-  flake,
-  lib,
-  ...
-}: let
+{flake, ...}: let
   inherit (flake) inputs;
 in {
   imports = [
@@ -110,6 +104,17 @@ in {
       mindustry-wayland
       shattered-pixel-dungeon
       jq
+      testdisk-qt
+      wireguard-tools
+      commitizen
+      woeusb-ng
+      ntfs3g
+      ffmpeg
+      filezilla
+      # rust shit
+      rustup
+      gcc
+      libgcc
     ];
 
     programs.firefox.enable = true;
@@ -120,6 +125,13 @@ in {
       profiles.nixorn = {
         isDefault = true;
       };
+    };
+    programs.emacs = {
+      extraConfig = ''
+         (setq make-backup-files nil)
+      '';
+
+      enable = true;
     };
 
     programs.htop.enable = true;
@@ -138,7 +150,6 @@ in {
       ];
     };
     programs.tmux.enable = true;
-    programs.vim.enable = true;
     programs.git = {
       enable = true;
       userName = "a-kanev@yandex.ru";
@@ -150,8 +161,9 @@ in {
     };
     programs.bash = {
       enable = true;
+      
       sessionVariables = {
-        EDITOR = "vim";
+        EDITOR = "emacs -nw";
       };
     };
 
