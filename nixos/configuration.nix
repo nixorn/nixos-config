@@ -1,4 +1,4 @@
-{flake, ...}: let
+{flake, pkgs, ...}: let
   inherit (flake) inputs;
 in {
   imports = [
@@ -35,12 +35,16 @@ in {
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
-  programs.xwayland.enable = true;
   # Enable the GNOME Desktop Environment.
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
 
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
+
+  virtualisation.libvirtd.enable = true;
+
+  programs.virt-manager.enable = true;
+
 
   # Configure keymap in X11
   services.xserver = {
@@ -51,8 +55,10 @@ in {
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
+  programs.xwayland.enable = true;
+
   # Enable sound with pipewire.
-  sound.enable = true;
+  # sound.enable = true;
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
@@ -62,20 +68,34 @@ in {
     pulse.enable = true;
   };
 
-  virtualisation.docker.enable = true;
+  # virtualisation.docker.enable = true;
+  virtualisation.containers.enable = true;
+  virtualisation.podman = {
+    enable = true;
+    dockerSocket.enable = true;
+  };
+  environment.systemPackages = with pkgs;  [
+    docker distrobox
+  ];
+
 
   users.users.nixorn = {
     isNormalUser = true;
     description = "nixorn";
-    extraGroups = ["networkmanager" "wheel" "docker"];
+    extraGroups = ["networkmanager" "wheel" "docker" "podman"];
   };
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
   };
-  home-manager.users.nixorn = {pkgs, ...}: {
+  home-manager.users.nixorn = {pkgs, ...}: {	
+    home.sessionPath = [
+      "/home/nixorn/.npm-packages/bin"
+    ];
     home.packages = with pkgs; [
       gimp
+      # aseprite
+      steam-run
       inkscape
       libreoffice
       telegram-desktop
@@ -89,35 +109,35 @@ in {
       nom
       comma
       gnome.gnome-tweaks
-      crawlTiles
       cataclysm-dda
       obsidian
       docker
-      texliveSmall
       alejandra
       nil
       iputils
-      redis
       graphviz
-      vivaldi
       p7zip
       mindustry-wayland
-      shattered-pixel-dungeon
+      vivaldi
       jq
-      testdisk-qt
-      wireguard-tools
       commitizen
-      woeusb-ng
+      # woeusb-ng
       ntfs3g
       ffmpeg
       filezilla
+      vlc
+      google-chrome
+      sops
+      rclone
+      # mediainfo
+      vim
       # rust shit
       rustup
       gcc
       libgcc
     ];
 
-    programs.firefox.enable = true;
+    # programs.firefox.enable = true;
     programs.pandoc.enable = true;
     programs.obs-studio.enable = true;
     programs.thunderbird = {
@@ -171,7 +191,6 @@ in {
   };
   nixpkgs.config.allowUnfree = true;
 
-  environment.systemPackages = [];
 
   system.stateVersion = "23.11";
 
