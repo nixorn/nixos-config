@@ -1,4 +1,8 @@
-{flake, pkgs, ...}: let
+{
+  flake,
+  pkgs,
+  ...
+}: let
   inherit (flake) inputs;
 in {
   imports = [
@@ -45,7 +49,6 @@ in {
 
   programs.virt-manager.enable = true;
 
-
   # Configure keymap in X11
   services.xserver = {
     xkb.layout = "us";
@@ -68,16 +71,12 @@ in {
     pulse.enable = true;
   };
 
-  # virtualisation.docker.enable = true;
+  virtualisation.docker.enable = true;
   virtualisation.containers.enable = true;
-  virtualisation.podman = {
-    enable = true;
-    dockerSocket.enable = true;
-  };
-  environment.systemPackages = with pkgs;  [
-    docker distrobox
-  ];
 
+  environment.systemPackages = with pkgs; [
+    docker
+  ];
 
   users.users.nixorn = {
     isNormalUser = true;
@@ -88,13 +87,15 @@ in {
     useGlobalPkgs = true;
     useUserPackages = true;
   };
-  home-manager.users.nixorn = {pkgs, ...}: {	
+  home-manager.users.nixorn = {pkgs, ...}: {
     home.sessionPath = [
       "/home/nixorn/.npm-packages/bin"
     ];
     home.packages = with pkgs; [
       gimp
-      # aseprite
+      xq-xml
+      aseprite
+      gitkraken
       steam-run
       inkscape
       libreoffice
@@ -108,7 +109,8 @@ in {
       vesktop
       nom
       comma
-      gnome.gnome-tweaks
+      gnome-tweaks
+      gnome.gnome-boxes
       cataclysm-dda
       obsidian
       docker
@@ -135,6 +137,8 @@ in {
       rustup
       gcc
       libgcc
+      # python3
+      python3
     ];
 
     # programs.firefox.enable = true;
@@ -148,7 +152,7 @@ in {
     };
     programs.emacs = {
       extraConfig = ''
-         (setq make-backup-files nil)
+        (setq make-backup-files nil)
       '';
 
       enable = true;
@@ -181,7 +185,7 @@ in {
     };
     programs.bash = {
       enable = true;
-      
+
       sessionVariables = {
         EDITOR = "emacs -nw";
       };
@@ -190,7 +194,6 @@ in {
     home.stateVersion = "23.11";
   };
   nixpkgs.config.allowUnfree = true;
-
 
   system.stateVersion = "23.11";
 
@@ -213,6 +216,8 @@ in {
   environment.sessionVariables.FLAKE = "/home/nixorn/system"; # Чтобы работал nh
 
   nix = {
+    package = pkgs.lix;
+
     settings = {
       experimental-features = [
         "nix-command"
@@ -228,6 +233,18 @@ in {
         "@wheel"
       ];
       builders-use-substitutes = true;
+      trusted-substituters = [
+        "https://cache.nixos.org/"
+        "https://nix-community.cachix.org"
+        "https://numtide.cachix.org"
+        "https://cuda-maintainers.cachix.org"
+      ];
+      trusted-public-keys = [
+        "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
+        "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+        "numtide.cachix.org-1:2ps1kLBUWjxIneOy1Ik6cQjb41X0iXVXeHigGmycPPE="
+        "cuda-maintainers.cachix.org-1:0dq3bujKpuEPMCX6U4WylrUDZ9JyUG0VpVZa7CNfq5E="
+      ];
     };
 
     registry = {
