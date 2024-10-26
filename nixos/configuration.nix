@@ -92,6 +92,7 @@ in {
       "/home/nixorn/.npm-packages/bin"
     ];
     home.packages = with pkgs; [
+      audio-recorder
       gimp
       xq-xml
       aseprite
