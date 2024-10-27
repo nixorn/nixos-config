@@ -93,10 +93,12 @@ in {
     ];
     home.packages = with pkgs; [
       audio-recorder
+      helvum
+      easyeffects
+      dwarf-fortress
       gimp
       xq-xml
       aseprite
-      gitkraken
       steam-run
       inkscape
       libreoffice
@@ -121,6 +123,7 @@ in {
       graphviz
       p7zip
       mindustry-wayland
+      freedroidrpg
       vivaldi
       jq
       commitizen
@@ -171,7 +174,7 @@ in {
         haskell.haskell
         redhat.vscode-xml
         jebbs.plantuml
-        ms-toolsai.jupyter
+        ms-python.python
       ];
     };
     programs.tmux.enable = true;
