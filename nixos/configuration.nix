@@ -92,10 +92,24 @@ in {
       "/home/nixorn/.npm-packages/bin"
     ];
     home.packages = with pkgs; [
+      # games
+      dwarf-fortress
+      cataclysm-dda
+      mindustry-wayland
+      freedroidrpg
+      ufoai
+      openra
+      crawlTiles
+      hyperrogue
+      wesnoth
+      scanmem
+      nethack
+
+      #
+      camunda-modeler
       audio-recorder
       helvum
       easyeffects
-      dwarf-fortress
       gimp
       xq-xml
       aseprite
@@ -114,7 +128,6 @@ in {
       comma
       gnome-tweaks
       gnome.gnome-boxes
-      cataclysm-dda
       obsidian
       docker
       alejandra
@@ -122,8 +135,6 @@ in {
       iputils
       graphviz
       p7zip
-      mindustry-wayland
-      freedroidrpg
       vivaldi
       jq
       commitizen
