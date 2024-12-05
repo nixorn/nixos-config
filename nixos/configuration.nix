@@ -76,6 +76,7 @@ in {
 
   environment.systemPackages = with pkgs; [
     docker
+    devenv
   ];
 
   users.users.nixorn = {
@@ -104,8 +105,12 @@ in {
       wesnoth
       scanmem
       nethack
+      opensoldat
+      warzone2100
+      minetest
 
       #
+      mongodb-compass
       camunda-modeler
       audio-recorder
       helvum
