@@ -14,10 +14,10 @@ in {
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "nixorn-legion"; # Define your hostname.
-
-  # Enable networking
-  networking.networkmanager.enable = true;
+  networking = {
+    hostName = "nixorn-legion"; # Define your hostname.
+    networkmanager.enable = true;
+  }; 
 
   # Set your time zone.
   time.timeZone = "Europe/Moscow";
@@ -37,11 +37,6 @@ in {
     LC_ALL = "ru_RU.UTF-8";
   };
 
-  # Enable the X11 windowing system.
-  services.xserver.enable = true;
-  # Enable the GNOME Desktop Environment.
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
 
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
@@ -53,6 +48,28 @@ in {
   services.xserver = {
     xkb.layout = "us";
     xkb.variant = "";
+      
+    # Enable the X11 windowing system.
+    enable = true;
+
+    # Enable the GNOME Desktop Environment.
+    # desktopManager.gnome.enable = true;
+    
+
+    # plasma works with rdp
+    displayManager.gdm.enable = true;
+    displayManager.gdm.wayland = true;
+    desktopManager.plasma5.enable = true;
+    
+    # libinput.enable = false;
+
+  };
+
+
+  services.xrdp = { 
+    enable = true;
+    defaultWindowManager = "startplasma-x11";
+    openFirewall = true;
   };
 
   # Enable CUPS to print documents.
@@ -97,17 +114,13 @@ in {
       dwarf-fortress
       cataclysm-dda
       mindustry-wayland
-      freedroidrpg
       ufoai
       openra
       crawlTiles
-      hyperrogue
       wesnoth
       scanmem
-      nethack
       opensoldat
-      warzone2100
-      minetest
+      remmina
 
       #
       mongodb-compass
@@ -132,7 +145,7 @@ in {
       nom
       comma
       gnome-tweaks
-      gnome.gnome-boxes
+      # gnome.gnome-boxes
       obsidian
       docker
       alejandra
