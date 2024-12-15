@@ -17,7 +17,12 @@ in {
   networking = {
     hostName = "nixorn-legion"; # Define your hostname.
     networkmanager.enable = true;
+    firewall = {
+      enable = true;
+      allowedTCPPorts = [ 80 443 8000 ];
+    };
   }; 
+
 
   # Set your time zone.
   time.timeZone = "Europe/Moscow";
@@ -53,54 +58,50 @@ in {
     enable = true;
 
     # Enable the GNOME Desktop Environment.
-    # desktopManager.gnome.enable = true;
     
 
-    # plasma works with rdp
     displayManager.gdm.enable = true;
     displayManager.gdm.wayland = true;
-    desktopManager.plasma5.enable = true;
-    
-    # libinput.enable = false;
+    desktopManager.gnome.enable = true;
 
-  };
-
-
-  services.xrdp = { 
-    enable = true;
-    defaultWindowManager = "startplasma-x11";
-    openFirewall = true;
   };
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
-  programs.xwayland.enable = true;
-
   # Enable sound with pipewire.
   # sound.enable = true;
-  hardware.pulseaudio.enable = false;
-  security.rtkit.enable = true;
+  #hardware.pulseaudio.enable = false;
+  #security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
   };
+  programs.xwayland.enable = true;
+
 
   virtualisation.docker.enable = true;
   virtualisation.containers.enable = true;
+
+  systemd.targets.sleep.enable = false;
+  systemd.targets.suspend.enable = false;
+  systemd.targets.hibernate.enable = false;
+  systemd.targets.hybrid-sleep.enable = false;
 
   environment.systemPackages = with pkgs; [
     docker
     devenv
   ];
+    
 
   users.users.nixorn = {
     isNormalUser = true;
     description = "nixorn";
     extraGroups = ["networkmanager" "wheel" "docker" "podman"];
   };
+
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
@@ -111,6 +112,7 @@ in {
     ];
     home.packages = with pkgs; [
       # games
+      godot_4
       dwarf-fortress
       cataclysm-dda
       mindustry-wayland
@@ -120,9 +122,12 @@ in {
       wesnoth
       scanmem
       opensoldat
-      remmina
+    
 
       #
+      lshw
+      rustdesk
+      pwgen
       mongodb-compass
       camunda-modeler
       audio-recorder
