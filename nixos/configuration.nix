@@ -19,10 +19,9 @@ in {
     networkmanager.enable = true;
     firewall = {
       enable = true;
-      allowedTCPPorts = [ 80 443 8000 ];
+      allowedTCPPorts = [80 443 8000];
     };
-  }; 
-
+  };
 
   # Set your time zone.
   time.timeZone = "Europe/Moscow";
@@ -42,7 +41,6 @@ in {
     LC_ALL = "ru_RU.UTF-8";
   };
 
-
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
   virtualisation.libvirtd.enable = true;
@@ -53,17 +51,15 @@ in {
   services.xserver = {
     xkb.layout = "us";
     xkb.variant = "";
-      
+
     # Enable the X11 windowing system.
     enable = true;
 
     # Enable the GNOME Desktop Environment.
-    
 
     displayManager.gdm.enable = true;
     displayManager.gdm.wayland = true;
     desktopManager.gnome.enable = true;
-
   };
 
   # Enable CUPS to print documents.
@@ -81,7 +77,6 @@ in {
   };
   programs.xwayland.enable = true;
 
-
   virtualisation.docker.enable = true;
   virtualisation.containers.enable = true;
 
@@ -93,13 +88,22 @@ in {
   environment.systemPackages = with pkgs; [
     docker
     devenv
+    android-studio
   ];
-    
+
+  programs.adb.enable = true;
 
   users.users.nixorn = {
     isNormalUser = true;
     description = "nixorn";
-    extraGroups = ["networkmanager" "wheel" "docker" "podman"];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+      "docker"
+      # Андроид студия
+      "kvm"
+      "adbusers"
+    ];
   };
 
   home-manager = {
@@ -112,30 +116,19 @@ in {
     ];
     home.packages = with pkgs; [
       # games
-      godot_4
-      dwarf-fortress
-      cataclysm-dda
-      mindustry-wayland
-      ufoai
-      openra
       crawlTiles
-      wesnoth
       scanmem
-      opensoldat
-    
 
       #
-      lshw
       rustdesk
+      sqlite
       pwgen
-      mongodb-compass
-      camunda-modeler
       audio-recorder
       helvum
       easyeffects
       gimp
       xq-xml
-      aseprite
+      # aseprite
       steam-run
       inkscape
       libreoffice
@@ -150,6 +143,7 @@ in {
       nom
       comma
       gnome-tweaks
+      godot_4
       # gnome.gnome-boxes
       obsidian
       docker
@@ -181,6 +175,7 @@ in {
 
     # programs.firefox.enable = true;
     programs.pandoc.enable = true;
+
     programs.obs-studio.enable = true;
     programs.thunderbird = {
       enable = true;
