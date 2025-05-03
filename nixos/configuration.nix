@@ -131,7 +131,7 @@ in {
       cinny-desktop
       element-desktop
       maigret
-      alacrity
+      alacritty
 
       #
       sqlite
