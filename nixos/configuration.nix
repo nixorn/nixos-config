@@ -117,19 +117,29 @@ in {
     home.packages = with pkgs; [
       # games
       crawlTiles
+      wesnoth
+      zeroad
+      mindustry
+      endless-sky
+      dwarf-fortress
       scanmem
 
       #
-      rustdesk
+      gnome-boxes
+      tor-browser
+      retroshare
+      cinny-desktop
+      element-desktop
+      maigret
+      alacrity
+
+      #
       sqlite
       pwgen
-      audio-recorder
-      helvum
-      easyeffects
       gimp
       xq-xml
       # aseprite
-      steam-run
+      # steam-run
       inkscape
       libreoffice
       telegram-desktop
@@ -141,7 +151,6 @@ in {
       curl
       vesktop
       nom
-      comma
       gnome-tweaks
       godot_4
       # gnome.gnome-boxes
@@ -153,6 +162,7 @@ in {
       graphviz
       p7zip
       vivaldi
+      firefox
       jq
       commitizen
       # woeusb-ng
