@@ -88,7 +88,6 @@ in {
   environment.systemPackages = with pkgs; [
     docker
     devenv
-    android-studio
   ];
 
   programs.adb.enable = true;
