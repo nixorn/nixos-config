@@ -99,9 +99,7 @@ in {
       "networkmanager"
       "wheel"
       "docker"
-      # Андроид студия
       "kvm"
-      "adbusers"
     ];
   };
 
@@ -119,8 +117,9 @@ in {
       wesnoth
       zeroad
       mindustry
-      endless-sky
+      # endless-sky
       dwarf-fortress
+      cataclysm-dda
       scanmem
 
       #
