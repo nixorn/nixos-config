@@ -118,7 +118,7 @@ in {
       zeroad
       mindustry
       # endless-sky
-      dwarf-fortress
+      dwarf-fortress-full
       cataclysm-dda
       scanmem
 
@@ -128,8 +128,6 @@ in {
       retroshare
       cinny-desktop
       element-desktop
-      maigret
-      alacritty
 
       #
       sqlite
@@ -138,20 +136,16 @@ in {
       xq-xml
       # aseprite
       # steam-run
-      inkscape
       libreoffice
       telegram-desktop
       transmission_4-gtk
       nixpkgs-fmt
-      ranger
       keepass
       ncdu
       curl
       vesktop
       nom
       gnome-tweaks
-      godot_4
-      # gnome.gnome-boxes
       obsidian
       docker
       alejandra
@@ -163,7 +157,6 @@ in {
       firefox
       jq
       commitizen
-      # woeusb-ng
       ntfs3g
       ffmpeg
       filezilla
@@ -171,13 +164,7 @@ in {
       google-chrome
       sops
       rclone
-      # mediainfo
       vim
-      # rust shit
-      rustup
-      gcc
-      libgcc
-      # python3
       python3
     ];
 
@@ -211,7 +198,6 @@ in {
         haskell.haskell
         redhat.vscode-xml
         jebbs.plantuml
-        ms-python.python
       ];
     };
     programs.tmux.enable = true;
@@ -249,6 +235,7 @@ in {
   # хелпер для запуска всего
   programs.nh = {
     enable = true;
+    flake = "/home/nixorn/system";
     clean = {
       enable = true;
       extraArgs = "--keep-since 30d --keep 5";
@@ -263,6 +250,7 @@ in {
       experimental-features = [
         "nix-command"
         "flakes"
+        "repl-flake"
       ];
       accept-flake-config = true;
       auto-optimise-store = true;
