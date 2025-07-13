@@ -17,11 +17,15 @@ in {
   networking = {
     hostName = "nixorn-legion"; # Define your hostname.
     networkmanager.enable = true;
+    networkmanager.dns = "systemd-resolved";
     firewall = {
       enable = true;
       allowedTCPPorts = [80 443 8000];
+      checkReversePath = "loose";
     };
   };
+
+  services.resolved.enable = true; # нетворкманагер твик отсюда https://wiki.nixos.org/wiki/WireGuard
 
   # Set your time zone.
   time.timeZone = "Europe/Moscow";
@@ -115,7 +119,6 @@ in {
       # games
       crawlTiles
       wesnoth
-      zeroad
       mindustry
       # endless-sky
       dwarf-fortress-full
