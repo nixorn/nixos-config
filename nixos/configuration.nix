@@ -17,15 +17,12 @@ in {
   networking = {
     hostName = "nixorn-legion"; # Define your hostname.
     networkmanager.enable = true;
-    networkmanager.dns = "systemd-resolved";
+    networkmanager.plugins = [pkgs.networkmanager-l2tp];
     firewall = {
       enable = true;
       allowedTCPPorts = [80 443 8000];
-      checkReversePath = "loose";
     };
   };
-
-  services.resolved.enable = true; # нетворкманагер твик отсюда https://wiki.nixos.org/wiki/WireGuard
 
   # Set your time zone.
   time.timeZone = "Europe/Moscow";
@@ -92,9 +89,10 @@ in {
   environment.systemPackages = with pkgs; [
     docker
     devenv
+    networkmanagerapplet
   ];
-
-  programs.adb.enable = true;
+  # programs.nm-applet.enable = true;
+  programs.amnezia-vpn.enable = true;
 
   users.users.nixorn = {
     isNormalUser = true;
@@ -123,7 +121,8 @@ in {
       # endless-sky
       dwarf-fortress-full
       cataclysm-dda
-      scanmem
+      # scanmem
+      rustdesk
 
       #
       gnome-boxes
@@ -224,6 +223,7 @@ in {
     home.stateVersion = "23.11";
   };
   nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.permittedInsecurePackages = ["libsoup-2.74.3"];
 
   system.stateVersion = "23.11";
 
@@ -253,7 +253,6 @@ in {
       experimental-features = [
         "nix-command"
         "flakes"
-        "repl-flake"
       ];
       accept-flake-config = true;
       auto-optimise-store = true;
