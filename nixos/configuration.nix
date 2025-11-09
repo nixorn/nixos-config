@@ -121,15 +121,17 @@ in {
       # endless-sky
       dwarf-fortress-full
       cataclysm-dda
+      prismlauncher
       # scanmem
-      rustdesk
+      # rustdesk
+      mogrify
 
       #
       gnome-boxes
       tor-browser
-      retroshare
-      cinny-desktop
-      element-desktop
+      #retroshare
+      # cinny-desktop
+      #element-desktop
 
       #
       sqlite
@@ -139,6 +141,7 @@ in {
       # aseprite
       # steam-run
       libreoffice
+      dbeaver-bin
       telegram-desktop
       transmission_4-gtk
       nixpkgs-fmt
@@ -168,6 +171,9 @@ in {
       rclone
       vim
       python3
+
+      # music
+      haskellPackages.tidal
     ];
 
     # programs.firefox.enable = true;
