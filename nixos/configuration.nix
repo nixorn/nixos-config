@@ -77,12 +77,6 @@ in {
     pulse.enable = true;
   };
 
-  # для embed кодинга
-  services.udev.packages = [
-    pkgs.platformio-core
-    pkgs.openocd
-  ];
-
   programs.xwayland.enable = true;
 
   virtualisation.docker.enable = true;
@@ -217,7 +211,6 @@ in {
         redhat.vscode-xml
         jebbs.plantuml
       ];
-      package = pkgs.vscode.fhsWithPackages (ps: with ps; [avrdude]);
     };
     programs.tmux.enable = true;
     programs.git = {
