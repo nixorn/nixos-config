@@ -217,6 +217,7 @@ in {
         redhat.vscode-xml
         jebbs.plantuml
       ];
+      package = pkgs.vscode.fhsWithPackages (ps: with ps; [avrdude]);
     };
     programs.tmux.enable = true;
     programs.git = {
