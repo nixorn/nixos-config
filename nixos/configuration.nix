@@ -76,6 +76,13 @@ in {
     alsa.support32Bit = true;
     pulse.enable = true;
   };
+
+  # для embed кодинга
+  services.udev.packages = [
+    pkgs.platformio-core
+    pkgs.openocd
+  ];
+
   programs.xwayland.enable = true;
 
   virtualisation.docker.enable = true;
@@ -102,6 +109,7 @@ in {
       "wheel"
       "docker"
       "kvm"
+      "dialout"
     ];
   };
 
@@ -116,19 +124,21 @@ in {
     home.packages = with pkgs; [
       # games
       crawlTiles
-      wesnoth
+      # wesnoth
       mindustry
       # endless-sky
-      dwarf-fortress-full
+      # dwarf-fortress-full
       cataclysm-dda
       prismlauncher
       # scanmem
       # rustdesk
-      mogrify
+      imagemagick
 
       #
+      screen
       gnome-boxes
       tor-browser
+      arduino-ide
       #retroshare
       # cinny-desktop
       #element-desktop
