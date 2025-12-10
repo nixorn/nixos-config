@@ -79,6 +79,8 @@ in {
 
   programs.xwayland.enable = true;
 
+  programs.adb.enable = true;
+
   virtualisation.docker.enable = true;
   virtualisation.containers.enable = true;
 
@@ -91,6 +93,8 @@ in {
     docker
     devenv
     networkmanagerapplet
+    android-studio
+    postresql
   ];
   # programs.nm-applet.enable = true;
   programs.amnezia-vpn.enable = true;
@@ -104,6 +108,7 @@ in {
       "docker"
       "kvm"
       "dialout"
+      "adbusers"
     ];
   };
 
@@ -128,6 +133,8 @@ in {
       # rustdesk
       imagemagick
 
+      wineWowPackages.stable
+
       #
       screen
       gnome-boxes
@@ -141,7 +148,7 @@ in {
       sqlite
       pwgen
       gimp
-      xq-xml
+      # xq-xml
       # aseprite
       # steam-run
       libreoffice
