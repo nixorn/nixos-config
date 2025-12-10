@@ -94,7 +94,7 @@ in {
     devenv
     networkmanagerapplet
     android-studio
-    postresql
+    postgresql
   ];
   # programs.nm-applet.enable = true;
   programs.amnezia-vpn.enable = true;
