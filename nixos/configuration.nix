@@ -136,6 +136,7 @@ in {
       wineWowPackages.stable
 
       #
+      codex
       screen
       gnome-boxes
       tor-browser
@@ -182,9 +183,8 @@ in {
       rclone
       vim
       python3
-
-      # music
-      haskellPackages.tidal
+      usbutils
+      file-roller
     ];
 
     # programs.firefox.enable = true;
