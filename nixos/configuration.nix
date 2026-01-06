@@ -94,10 +94,9 @@ in {
     devenv
     networkmanagerapplet
     android-studio
-    postgresql
   ];
   # programs.nm-applet.enable = true;
-  programs.amnezia-vpn.enable = true;
+  # programs.amnezia-vpn.enable = true;
 
   users.users.nixorn = {
     isNormalUser = true;
@@ -160,7 +159,8 @@ in {
       keepass
       ncdu
       curl
-      vesktop
+      #vesktop
+      discord
       nom
       gnome-tweaks
       obsidian
@@ -215,7 +215,6 @@ in {
         jnoortheen.nix-ide
         rust-lang.rust-analyzer
         haskell.haskell
-        redhat.vscode-xml
         jebbs.plantuml
       ];
     };
