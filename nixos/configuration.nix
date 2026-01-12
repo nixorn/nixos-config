@@ -79,8 +79,6 @@ in {
 
   programs.xwayland.enable = true;
 
-  programs.adb.enable = true;
-
   virtualisation.docker.enable = true;
   virtualisation.containers.enable = true;
 
@@ -128,6 +126,7 @@ in {
       # dwarf-fortress-full
       cataclysm-dda
       prismlauncher
+      hmcl
       # scanmem
       # rustdesk
       imagemagick
