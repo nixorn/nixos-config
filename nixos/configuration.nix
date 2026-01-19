@@ -158,7 +158,7 @@ in {
       keepass
       ncdu
       curl
-      #vesktop
+      vesktop
       discord
       nom
       gnome-tweaks
