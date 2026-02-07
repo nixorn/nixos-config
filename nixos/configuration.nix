@@ -124,7 +124,7 @@ in {
       mindustry
       # endless-sky
       # dwarf-fortress-full
-      cataclysm-dda
+      cataclysm-dda-git
       prismlauncher
       hmcl
       # scanmem
@@ -159,7 +159,7 @@ in {
       ncdu
       curl
       vesktop
-      discord
+      zoom
       nom
       gnome-tweaks
       obsidian
