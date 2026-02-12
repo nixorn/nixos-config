@@ -45,6 +45,7 @@ in {
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
   virtualisation.libvirtd.enable = true;
+  virtualisation.waydroid.enable = true;
 
   programs.virt-manager.enable = true;
 
@@ -93,6 +94,7 @@ in {
     networkmanagerapplet
     android-studio
   ];
+  programs.adb.enable = true;
   # programs.nm-applet.enable = true;
   # programs.amnezia-vpn.enable = true;
 
@@ -125,8 +127,10 @@ in {
       # endless-sky
       # dwarf-fortress-full
       cataclysm-dda-git
+      retroarch-full
       prismlauncher
       hmcl
+      unzip
       # scanmem
       # rustdesk
       imagemagick
@@ -134,6 +138,8 @@ in {
       wineWowPackages.stable
 
       #
+      apktool
+      jadx
       codex
       screen
       gnome-boxes
@@ -169,7 +175,6 @@ in {
       iputils
       graphviz
       p7zip
-      vivaldi
       firefox
       jq
       commitizen
@@ -259,6 +264,7 @@ in {
       extraArgs = "--keep-since 30d --keep 5";
     };
   };
+  programs.gamemode.enable = true;
   environment.sessionVariables.FLAKE = "/home/nixorn/system"; # Чтобы работал nh
 
   nix = {
