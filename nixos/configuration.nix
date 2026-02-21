@@ -92,9 +92,9 @@ in {
     docker
     devenv
     networkmanagerapplet
-    android-studio
+    # android-studio
+    # android-tools
   ];
-  programs.adb.enable = true;
   # programs.nm-applet.enable = true;
   # programs.amnezia-vpn.enable = true;
 
@@ -156,6 +156,7 @@ in {
       # xq-xml
       # aseprite
       # steam-run
+      ranger
       libreoffice
       dbeaver-bin
       telegram-desktop
