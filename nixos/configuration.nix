@@ -92,8 +92,8 @@ in {
     docker
     devenv
     networkmanagerapplet
-    # android-studio
-    # android-tools
+    android-studio
+    android-tools
   ];
   # programs.nm-applet.enable = true;
   # programs.amnezia-vpn.enable = true;
@@ -190,6 +190,7 @@ in {
       python3
       usbutils
       file-roller
+      openssl
     ];
 
     # programs.firefox.enable = true;
