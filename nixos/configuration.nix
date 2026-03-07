@@ -127,7 +127,7 @@ in {
       # endless-sky
       # dwarf-fortress-full
       cataclysm-dda-git
-      retroarch-full
+      # retroarch-full
       prismlauncher
       hmcl
       unzip
