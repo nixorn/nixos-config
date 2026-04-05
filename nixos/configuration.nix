@@ -46,6 +46,8 @@ in {
 
   virtualisation.libvirtd.enable = true;
   virtualisation.waydroid.enable = true;
+  virtualisation.waydroid.package = pkgs.waydroid-nftables;
+  networking.nftables.enable = true;
 
   programs.virt-manager.enable = true;
 
@@ -123,19 +125,15 @@ in {
       # games
       crawlTiles
       # wesnoth
-      mindustry
-      # endless-sky
+      # mindustry
       # dwarf-fortress-full
       cataclysm-dda-git
       # retroarch-full
-      prismlauncher
       hmcl
       unzip
       # scanmem
       # rustdesk
       imagemagick
-
-      wineWowPackages.stable
 
       #
       apktool
