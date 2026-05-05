@@ -91,6 +91,11 @@ in {
   systemd.targets.hibernate.enable = false;
   systemd.targets.hybrid-sleep.enable = false;
 
+  ### амнезия впн
+  environment.extraInit = ''
+    export XDG_DATA_DIRS="$XDG_DATA_DIRS:${pkgs.gtk3}/share/gsettings-schemas/${pkgs.gtk3.name}"
+  '';
+
   environment.systemPackages = with pkgs; [
     docker
     devenv
@@ -98,8 +103,6 @@ in {
     android-studio
     android-tools
   ];
-  # programs.nm-applet.enable = true;
-  # programs.amnezia-vpn.enable = true;
 
   users.users.nixorn = {
     isNormalUser = true;
