@@ -50,6 +50,7 @@ in {
   networking.nftables.enable = true;
 
   programs.virt-manager.enable = true;
+  programs.amnezia-vpn.enable = true;
 
   # Configure keymap in X11
   services.xserver = {
@@ -222,6 +223,7 @@ in {
         jebbs.plantuml
       ];
     };
+
     programs.tmux.enable = true;
     programs.git = {
       enable = true;
