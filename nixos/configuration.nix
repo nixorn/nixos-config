@@ -191,6 +191,7 @@ in {
       usbutils
       file-roller
       openssl
+      goose-cli
     ];
 
     # programs.firefox.enable = true;
