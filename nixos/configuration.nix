@@ -192,6 +192,7 @@ in {
       file-roller
       openssl
       goose-cli
+      net-tools
     ];
 
     # programs.firefox.enable = true;
