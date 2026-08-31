@@ -131,6 +131,7 @@ in {
       mindustry
       # dwarf-fortress-full
       cataclysm-dda-git
+      openttd
       # retroarch-full
       hmcl
       unzip
